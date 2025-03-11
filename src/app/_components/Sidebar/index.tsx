@@ -5,7 +5,7 @@ import { faMagnet } from '@fortawesome/free-solid-svg-icons';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
 const SidebarContainer = styled.div`
-  width: 50px;  
+  width: 60px;  
   height: 100vh;
   background: white;  
   border: 2px solid #e5e5e5;
@@ -34,6 +34,10 @@ const MenubarIcon = styled.div`
   color: #0088FF;
   border-bottom: 2px solid #eee;
   font-size: 20px;
+
+  &:hover {
+    background: #f5f5f5;
+  }
 `;
 
 const MenuList = styled.nav`
@@ -44,7 +48,7 @@ const MenuList = styled.nav`
 
 const MenuItem = styled.a`
   width: 100%;
-  height: 25px;
+  height: 50px;
   padding: 15px 0;
   display: flex;
   flex-direction: column;
@@ -56,6 +60,11 @@ const MenuItem = styled.a`
   font-size: 12px;
   text-align: center;
   border-bottom: 2px solid #eee;
+
+  &:hover {
+    background: #f5f5f5;
+    color: #0088FF;
+  }
 `;
 
 const MenuText = styled.span`
@@ -71,20 +80,20 @@ export function Sidebar() {
   return (
     <SidebarContainer>
       <Logo>
-        <FontAwesomeIcon icon={faMagnet} size="sm" />
+        <FontAwesomeIcon icon={faMagnet} />
       </Logo>
       <MenubarIcon>
-        <FontAwesomeIcon icon={faChevronRight} size="sm" />
+        <FontAwesomeIcon icon={faChevronRight} />
       </MenubarIcon>
       <MenuList>
-        <MenuItem href="/property">
+        <MenuItem>
           <MenuText>買取</MenuText>
           <MenuText>査定</MenuText>
         </MenuItem>
-        <MenuItem href="#">
+        <MenuItem>
           <MenuText>入庫</MenuText>
         </MenuItem>
-        <MenuItem href="#">
+        <MenuItem>
           <MenuText>顧客</MenuText>
           <MenuText>情報</MenuText>
         </MenuItem>

@@ -5,7 +5,6 @@ const HeaderContainer = styled.div`
   width: 100%;
   height: 45px;
   background: #f5f5f5;
-  border: 2px solid #e5e5e5;
   display: flex;
   justify-content: space-between;
   align-items: center;

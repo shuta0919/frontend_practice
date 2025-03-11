@@ -37,7 +37,8 @@ const Input = styled.input`
   border: none;
   background: transparent;
   padding: 12px 0;
-  font-size: 10px;
+  font-size: 14px;
+  color: #333;
   &::placeholder {
     color: #999;
   }
@@ -52,7 +53,7 @@ const SearchButton = styled.button`
   color: white;
   border: none;
   border-radius: 4px;
-  font-size: 12px;
+  font-size: 14px;
   cursor: pointer;
   margin-left: 20px;
   &:hover {
