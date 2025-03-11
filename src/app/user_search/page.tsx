@@ -1,74 +1,65 @@
 "use client";
 import styled from 'styled-components';
+import { Header } from '../_components/Header';
+import { Sidebar } from '../_components/Sidebar';
+import { SearchForm } from '../_components/SearchForm';
 
 const Container = styled.div`
   display: flex;
+  background: white;
+`;
+
+const MainContent = styled.div`
+  width: 100%;
+  height: 100vh;
+  display: flex;
   flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
+`;
+
+const ContentArea = styled.div`
+  flex: 1;
+  display: flex;
   justify-content: center;
-  min-height: 100vh;
-  padding: 20px;
-  background-color: #f5f5f5;
+  align-items: center;
 `;
 
 const SearchSection = styled.div`
   width: 100%;
-  max-width: 600px;
-  background: white;
-  padding: 30px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
 `;
 
 const Title = styled.h1`
-  font-size: 1.5rem;
-  margin-bottom: 20px;
+  font-size: 16px;
+  font-weight: bold;
   color: #333;
-`;
-
-const SearchBox = styled.div`
-  display: flex;
-  gap: 10px;
-`;
-
-const Input = styled.input`
-  flex: 1;
-  padding: 10px 15px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 1rem;
-  &:focus {
-    outline: none;
-    border-color: #0066cc;
-  }
-`;
-
-const SearchButton = styled.button`
-  padding: 10px 20px;
-  background-color: #0066cc;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 1rem;
-  &:hover {
-    background-color: #0052a3;
-  }
+  margin-right: 10px;
+  white-space: nowrap;
 `;
 
 export default function UserSearch() {
+  const handleSearch = (searchTerm: string) => {
+    console.log('Searching for:', searchTerm);
+  };
+
   return (
     <Container>
-      <SearchSection>
-        <Title>顧客情報の検索</Title>
-        <SearchBox>
-          <Input 
-            type="text" 
-            placeholder="キーワード・電話番号で検索" 
-          />
-          <SearchButton>検索</SearchButton>
-        </SearchBox>
-      </SearchSection>
+      <Sidebar />
+      <MainContent>
+        <Header />
+        <ContentArea>
+          <SearchSection>
+            <Title>顧客情報の検索</Title>
+            <SearchForm onSearch={handleSearch} />
+          </SearchSection>
+        </ContentArea>
+      </MainContent>
     </Container>
   );
 }
