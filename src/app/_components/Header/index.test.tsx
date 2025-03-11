@@ -2,6 +2,7 @@ import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 import { Header } from './index';
 import React from 'react';
+import 'jest-styled-components';
 
 describe('Header', () => {
   test('タイトルとサブテキストが表示されていること', () => {
