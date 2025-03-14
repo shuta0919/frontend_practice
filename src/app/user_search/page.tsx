@@ -1,8 +1,8 @@
 "use client";
-import styled from 'styled-components';
-import { Header } from '../_components/Header';
-import { Sidebar } from '../_components/Sidebar';
-import { SearchForm } from '../_components/SearchForm';
+import styled from "styled-components";
+import { Header } from "../_components/Header";
+import { Sidebar } from "../_components/Sidebar";
+import { SearchForm } from "../_components/SearchForm";
 
 const Container = styled.div`
   display: flex;
@@ -45,7 +45,7 @@ const Title = styled.h1`
 
 export default function UserSearch() {
   const handleSearch = (searchTerm: string) => {
-    console.log('Searching for:', searchTerm);
+    console.log("Searching for:", searchTerm);
   };
 
   return (
