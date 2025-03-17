@@ -36,7 +36,7 @@ const Logo = styled.div`
   font-size: 25px;
 `;
 
-const ChevronIcon = styled.div`
+const ChevronButton = styled.button`
   width: 100%;
   height: 45px;
   display: flex;
@@ -96,7 +96,7 @@ const SubMenuContainer = styled.div`
   z-index: 5;
 `;
 
-const CloseButton = styled.div`
+const CloseButton = styled.button`
   position: absolute;
   top: 10px;
   right: 10px;
@@ -170,9 +170,9 @@ export function Sidebar() {
         <Logo>
           <FontAwesomeIcon icon={faMagnet} />
         </Logo>
-        <ChevronIcon onClick={toggleSubMenu}>
+        <ChevronButton aria-label="サブメニューを開く" onClick={toggleSubMenu}>
           <FontAwesomeIcon icon={faChevronRight} />
-        </ChevronIcon>
+        </ChevronButton>
         <MenuList>
           <MenuItem>
             <MenuText>買取</MenuText>
@@ -191,7 +191,7 @@ export function Sidebar() {
       {/* サブメニュー */}
       {isSubMenuOpen && (
         <SubMenuContainer>
-          <CloseButton onClick={toggleSubMenu}>
+          <CloseButton aria-label="サブメニューを閉じる" onClick={toggleSubMenu}>
             <FontAwesomeIcon icon={faTimes} />
           </CloseButton>
 
