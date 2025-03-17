@@ -43,9 +43,12 @@ const ChevronButton = styled.button`
   align-items: center;
   justify-content: center;
   color: #0088ff;
-  border-bottom: 2px solid #eee;
   font-size: 20px;
   cursor: pointer;
+  background: none;
+  border: none;
+  border-bottom: 2px solid #eee; 
+
 
   &:hover {
     background: #f5f5f5;
@@ -108,6 +111,8 @@ const CloseButton = styled.button`
   color: #3498db;
   cursor: pointer;
   font-size: 16px;
+  background: none;
+  border: none;
 
   &:hover {
     color: #333;
