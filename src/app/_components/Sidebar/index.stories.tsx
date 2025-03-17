@@ -15,7 +15,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   render: () => (
-    <div style={{ height: "700px" }}>
+    <div style={{ height: "100vh", position: "relative" }}>
       <Sidebar />
     </div>
   ),
