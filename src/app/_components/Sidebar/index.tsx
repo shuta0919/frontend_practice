@@ -1,39 +1,53 @@
 "use client";
-import styled from 'styled-components';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMagnet } from '@fortawesome/free-solid-svg-icons'; 
-import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import React, { useState } from "react";
+import styled from "styled-components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMagnet } from "@fortawesome/free-solid-svg-icons";
+import { faChevronRight, faTimes } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCamera,
+  faPen,
+  faCircle,
+  faTh,
+  faIdCard,
+} from "@fortawesome/free-solid-svg-icons";
 
+// メインのサイドバーコンテナ
 const SidebarContainer = styled.div`
-  width: 60px;  
+  width: 60px;
   height: 100vh;
-  background: white;  
-  border: 2px solid #e5e5e5;
+  background: white;
+  border-right: 2px solid #e5e5e5;
   display: flex;
   flex-direction: column;
+  position: relative;
+  z-index: 5;
 `;
 
 const Logo = styled.div`
   width: 100%;
   height: 45px;
-  background: #FFDD00;  
+  background: #ffdd00;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: blue;  
+  color: blue;
   font-weight: bold;
   font-size: 25px;
 `;
 
-const MenubarIcon = styled.div`
+const ChevronButton = styled.button`
   width: 100%;
   height: 45px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #0088FF;
-  border-bottom: 2px solid #eee;
+  color: #0088ff;
   font-size: 20px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  border-bottom: 2px solid #eee;
 
   &:hover {
     background: #f5f5f5;
@@ -63,7 +77,7 @@ const MenuItem = styled.a`
 
   &:hover {
     background: #f5f5f5;
-    color: #0088FF;
+    color: #0088ff;
   }
 `;
 
@@ -73,31 +87,267 @@ const MenuText = styled.span`
   font-size: 12px;
 `;
 
+const ActionItemWrapper = styled.div`
+  position: relative;
+`;
 
+const ActionItemContainer = styled.div`
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 55px;
+  width: 150px;
+  height: 150px;
+  background: white;
+  border: 2px solid #e5e5e5;
+  z-index: 20;
 
+  ${ActionItemWrapper}:hover & {
+    display: block;
+  }
+`;
+
+const ActionList = styled.div`
+  width: 100%;
+`;
+
+const ActionItem = styled.a`
+  width: 100%;
+  padding: 8px 17px;
+  display: flex;
+  align-items: center;
+  color: #333;
+  font-size: 10px;
+
+  &:hover {
+    background: #f5f5f5;
+    color: #0066cc;
+  }
+`;
+
+const ActionIcon = styled.div`
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+  color: white;
+  background-color: #3498db;
+  border-radius: 4px;
+  font-size: 10px;
+`;
+
+// サブメニュー関連のスタイル
+const SubMenuContainer = styled.div`
+  position: absolute;
+  top: 45px;
+  width: 180px;
+  height: calc(100vh - 45px);
+  background: white;
+  border-right: 2px solid #e5e5e5;
+  z-index: 5;
+`;
+
+const CloseButton = styled.button`
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 25px;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #3498db;
+  cursor: pointer;
+  font-size: 16px;
+  background: none;
+  border: none;
+
+  &:hover {
+    color: #333;
+  }
+`;
+
+const CategoryHeader = styled.div`
+  padding: 12px 15px;
+  font-weight: bold;
+  color: #333;
+  font-size: 14px;
+`;
+
+const SubMenuList = styled.div`
+  width: 100%;
+`;
+
+const SubMenuItem = styled.a`
+  width: 100%;
+  padding: 10px 15px;
+  display: flex;
+  align-items: center;
+  color: #333;
+  font-size: 13px;
+
+  &:hover {
+    background: #f5f5f5;
+    color: #0066cc;
+  }
+`;
+
+const SubMenuIcon = styled.div`
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+  color: white;
+  background-color: #3498db;
+  border-radius: 4px;
+  font-size: 14px;
+`;
+
+const Spacer = styled.div`
+  width: 100%;
+  padding: 10px 0;
+`;
 
 export function Sidebar() {
+  const [isSubMenuOpen, setIsSubMenuOpen] = useState(false);
+
+  const toggleSubMenu = () => {
+    setIsSubMenuOpen(!isSubMenuOpen);
+  };
+
   return (
-    <SidebarContainer>
-      <Logo>
-        <FontAwesomeIcon icon={faMagnet} />
-      </Logo>
-      <MenubarIcon>
-        <FontAwesomeIcon icon={faChevronRight} />
-      </MenubarIcon>
-      <MenuList>
-        <MenuItem>
-          <MenuText>買取</MenuText>
-          <MenuText>査定</MenuText>
-        </MenuItem>
-        <MenuItem>
-          <MenuText>入庫</MenuText>
-        </MenuItem>
-        <MenuItem>
-          <MenuText>顧客</MenuText>
-          <MenuText>情報</MenuText>
-        </MenuItem>
-      </MenuList>
-    </SidebarContainer>
+    <>
+      <SidebarContainer>
+        <Logo>
+          <FontAwesomeIcon icon={faMagnet} />
+        </Logo>
+        <ChevronButton aria-label="サブメニューを開く" onClick={toggleSubMenu}>
+          <FontAwesomeIcon icon={faChevronRight} />
+        </ChevronButton>
+        <MenuList>
+          <ActionItemWrapper>
+            <MenuItem data-testid="menu-item">
+              <MenuText>買取</MenuText>
+              <MenuText>査定</MenuText>
+            </MenuItem>
+            <ActionItemContainer data-testid="action-item-container">
+              <ActionList>
+                <ActionItem href="#">
+                  <ActionIcon>
+                    <FontAwesomeIcon icon={faCamera} />
+                  </ActionIcon>
+                  新規買取査定
+                </ActionItem>
+                <ActionItem href="#">
+                  <ActionIcon>
+                    <FontAwesomeIcon icon={faPen} />
+                  </ActionIcon>
+                  買取契約の締結
+                </ActionItem>
+                <ActionItem href="#">
+                  <ActionIcon>
+                    <FontAwesomeIcon icon={faCircle} />
+                  </ActionIcon>
+                  仮入庫前一覧
+                </ActionItem>
+                <ActionItem href="#">
+                  <ActionIcon>
+                    <FontAwesomeIcon icon={faTh} />
+                  </ActionIcon>
+                  査定ランク編集
+                </ActionItem>
+              </ActionList>
+            </ActionItemContainer>
+          </ActionItemWrapper>
+          <MenuItem data-testid="menu-item">
+            <MenuText>入庫</MenuText>
+          </MenuItem>
+          <MenuItem data-testid="menu-item">
+            <MenuText>顧客</MenuText>
+            <MenuText>情報</MenuText>
+          </MenuItem>
+        </MenuList>
+      </SidebarContainer>
+
+      {/* サブメニュー */}
+      {isSubMenuOpen && (
+        <SubMenuContainer>
+          <CloseButton
+            aria-label="サブメニューを閉じる"
+            onClick={toggleSubMenu}
+          >
+            <FontAwesomeIcon icon={faTimes} />
+          </CloseButton>
+
+          <CategoryHeader>買取査定</CategoryHeader>
+          <SubMenuList>
+            <SubMenuItem href="#">
+              <SubMenuIcon>
+                <FontAwesomeIcon icon={faCamera} />
+              </SubMenuIcon>
+              新規買取査定
+            </SubMenuItem>
+            <SubMenuItem href="#">
+              <SubMenuIcon>
+                <FontAwesomeIcon icon={faPen} />
+              </SubMenuIcon>
+              買取契約の締結
+            </SubMenuItem>
+            <SubMenuItem href="#">
+              <SubMenuIcon>
+                <FontAwesomeIcon icon={faCircle} />
+              </SubMenuIcon>
+              仮入庫前一覧
+            </SubMenuItem>
+            <SubMenuItem href="#">
+              <SubMenuIcon>
+                <FontAwesomeIcon icon={faTh} />
+              </SubMenuIcon>
+              査定ランク編集
+            </SubMenuItem>
+          </SubMenuList>
+
+          <Spacer />
+
+          <CategoryHeader>入庫</CategoryHeader>
+          <SubMenuList>
+            <SubMenuItem href="#">
+              <SubMenuIcon>
+                <FontAwesomeIcon icon={faCircle} />
+              </SubMenuIcon>
+              入庫サブメニュー
+            </SubMenuItem>
+            <SubMenuItem href="#">
+              <SubMenuIcon>
+                <FontAwesomeIcon icon={faCircle} />
+              </SubMenuIcon>
+              入庫サブメニュー
+            </SubMenuItem>
+          </SubMenuList>
+
+          <Spacer />
+
+          <CategoryHeader>顧客情報</CategoryHeader>
+          <SubMenuList>
+            <SubMenuItem href="#">
+              <SubMenuIcon>
+                <FontAwesomeIcon icon={faIdCard} />
+              </SubMenuIcon>
+              新規顧客登録
+            </SubMenuItem>
+            <SubMenuItem href="#">
+              <SubMenuIcon>
+                <FontAwesomeIcon icon={faIdCard} />
+              </SubMenuIcon>
+              Croooober ID検索
+            </SubMenuItem>
+          </SubMenuList>
+        </SubMenuContainer>
+      )}
+    </>
   );
 }

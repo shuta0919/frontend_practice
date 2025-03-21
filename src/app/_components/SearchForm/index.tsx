@@ -1,8 +1,7 @@
 "use client";
-import styled from 'styled-components';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import 'jest-styled-components';
+import styled from "styled-components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 const SearchContainer = styled.div`
   display: flex;
@@ -12,7 +11,6 @@ const SearchContainer = styled.div`
   background: white;
   border-radius: 4px;
 `;
-
 
 const SearchInputContainer = styled.div`
   display: flex;
@@ -29,7 +27,7 @@ const SearchIconWrapper = styled.span`
   margin-right: 8px;
   display: flex;
   align-items: center;
-  font-size: 14px;  
+  font-size: 14px;
 `;
 
 const Input = styled.input`
@@ -73,14 +71,9 @@ export function SearchForm({ onSearch = () => {} }: SearchFormProps) {
         <SearchIconWrapper>
           <FontAwesomeIcon icon={faSearch} />
         </SearchIconWrapper>
-        <Input 
-          type="text" 
-          placeholder="キーワード・電話番号で検索" 
-        />
+        <Input type="text" placeholder="キーワード・電話番号で検索" />
       </SearchInputContainer>
-      <SearchButton onClick={() => onSearch("")}>
-        検索
-      </SearchButton>
+      <SearchButton onClick={() => onSearch("")}>検索</SearchButton>
     </SearchContainer>
   );
 }

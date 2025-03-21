@@ -1,5 +1,5 @@
-import Document, { DocumentContext } from 'next/document';
-import { ServerStyleSheet } from 'styled-components';
+import Document, { DocumentContext } from "next/document";
+import { ServerStyleSheet } from "styled-components";
 
 // デフォルトのDocumentクラスを拡張してカスタムDocumentクラスを作成
 export default class MyDocument extends Document {
@@ -11,7 +11,8 @@ export default class MyDocument extends Document {
       // Appコンポーネントをラップし、スタイルを収集
       ctx.renderPage = () =>
         originalRenderPage({
-          enhanceApp: (App) => (props) => sheet.collectStyles(<App {...props} />),
+          enhanceApp: (App) => (props) =>
+            sheet.collectStyles(<App {...props} />),
         });
 
       // 初期プロパティを取得
