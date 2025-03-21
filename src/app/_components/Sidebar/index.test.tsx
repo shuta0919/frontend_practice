@@ -5,7 +5,7 @@ import React from "react";
 import "jest-styled-components";
 
 jest.mock("@fortawesome/react-fontawesome", () => ({
-  FontAwesomeIcon: () => <div data-testid="mock-icon" />
+  FontAwesomeIcon: () => <div data-testid="mock-icon" />,
 }));
 
 describe("Sidebar", () => {
@@ -50,7 +50,9 @@ describe("Sidebar", () => {
   test(">アイコンをクリックするとサブメニューが表示されること", () => {
     render(<Sidebar />);
 
-    const menuButton = screen.getByRole("button", { name: "サブメニューを開く" });
+    const menuButton = screen.getByRole("button", {
+      name: "サブメニューを開く",
+    });
     fireEvent.click(menuButton);
 
     expect(screen.getByText("買取査定")).toBeInTheDocument();
@@ -59,12 +61,16 @@ describe("Sidebar", () => {
   test("閉じるボタンをクリックするとサブメニューが非表示されること", () => {
     render(<Sidebar />);
 
-    const menuButton = screen.getByRole("button", { name: "サブメニューを開く" });
+    const menuButton = screen.getByRole("button", {
+      name: "サブメニューを開く",
+    });
     fireEvent.click(menuButton);
 
     expect(screen.getByText("買取査定")).toBeInTheDocument();
 
-    const closeButton = screen.getByRole("button", { name: "サブメニューを閉じる" });
+    const closeButton = screen.getByRole("button", {
+      name: "サブメニューを閉じる",
+    });
     fireEvent.click(closeButton);
 
     expect(screen.queryByText("買取査定")).not.toBeInTheDocument();
@@ -72,11 +78,11 @@ describe("Sidebar", () => {
 
   test("ホバー時のサブメニュー表示用の要素が存在すること", () => {
     render(<Sidebar />);
-    
+
     const menuItem = screen.getAllByTestId("menu-item")[0];
     expect(menuItem).toBeInTheDocument();
-    
-    const submenuContainer = screen.queryByTestId('action-item-container');
+
+    const submenuContainer = screen.queryByTestId("action-item-container");
     expect(submenuContainer).toBeInTheDocument();
   });
 });

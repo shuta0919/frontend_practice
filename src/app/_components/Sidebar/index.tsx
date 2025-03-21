@@ -47,8 +47,7 @@ const ChevronButton = styled.button`
   cursor: pointer;
   background: none;
   border: none;
-  border-bottom: 2px solid #eee; 
-
+  border-bottom: 2px solid #eee;
 
   &:hover {
     background: #f5f5f5;
@@ -103,7 +102,7 @@ const ActionItemContainer = styled.div`
   border: 2px solid #e5e5e5;
   border-left: none;
   z-index: 20;
-  
+
   ${ActionItemWrapper}:hover & {
     display: block;
   }
@@ -126,7 +125,6 @@ const ActionItem = styled.a`
     color: #0066cc;
   }
 `;
-
 
 const ActionIcon = styled.div`
   width: 20px;
@@ -238,32 +236,32 @@ export function Sidebar() {
               <MenuText>査定</MenuText>
             </MenuItem>
             <ActionItemContainer data-testid="action-item-container">
-            <ActionList>
-            <ActionItem href="#">
-              <ActionIcon>
-                <FontAwesomeIcon icon={faCamera} />
-              </ActionIcon>
-              新規買取査定
-            </ActionItem>
-            <ActionItem href="#">
-              <ActionIcon>
-                <FontAwesomeIcon icon={faPen} />
-              </ActionIcon>
-              買取契約の締結
-            </ActionItem>
-            <ActionItem href="#">
-              <ActionIcon>
-                <FontAwesomeIcon icon={faCircle} />
-              </ActionIcon>
-              仮入庫前一覧
-            </ActionItem>
-            <ActionItem href="#">
-              <ActionIcon>
-                <FontAwesomeIcon icon={faTh} />
-              </ActionIcon>
-              査定ランク編集
-            </ActionItem>
-          </ActionList>
+              <ActionList>
+                <ActionItem href="#">
+                  <ActionIcon>
+                    <FontAwesomeIcon icon={faCamera} />
+                  </ActionIcon>
+                  新規買取査定
+                </ActionItem>
+                <ActionItem href="#">
+                  <ActionIcon>
+                    <FontAwesomeIcon icon={faPen} />
+                  </ActionIcon>
+                  買取契約の締結
+                </ActionItem>
+                <ActionItem href="#">
+                  <ActionIcon>
+                    <FontAwesomeIcon icon={faCircle} />
+                  </ActionIcon>
+                  仮入庫前一覧
+                </ActionItem>
+                <ActionItem href="#">
+                  <ActionIcon>
+                    <FontAwesomeIcon icon={faTh} />
+                  </ActionIcon>
+                  査定ランク編集
+                </ActionItem>
+              </ActionList>
             </ActionItemContainer>
           </ActionItemWrapper>
           <MenuItem data-testid="menu-item">
@@ -279,7 +277,10 @@ export function Sidebar() {
       {/* サブメニュー */}
       {isSubMenuOpen && (
         <SubMenuContainer>
-          <CloseButton aria-label="サブメニューを閉じる" onClick={toggleSubMenu}>
+          <CloseButton
+            aria-label="サブメニューを閉じる"
+            onClick={toggleSubMenu}
+          >
             <FontAwesomeIcon icon={faTimes} />
           </CloseButton>
 
