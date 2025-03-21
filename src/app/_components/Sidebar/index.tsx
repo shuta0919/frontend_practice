@@ -88,6 +88,59 @@ const MenuText = styled.span`
   font-size: 12px;
 `;
 
+const ActionItemWrapper = styled.div`
+  position: relative;
+`;
+
+const ActionItemContainer = styled.div`
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 60px;
+  width: 150px;
+  height: 150px;
+  background: white;
+  border: 2px solid #e5e5e5;
+  border-left: none;
+  z-index: 20;
+  
+  ${ActionItemWrapper}:hover & {
+    display: block;
+  }
+`;
+
+const ActionList = styled.div`
+  width: 100%;
+`;
+
+const ActionItem = styled.a`
+  width: 100%;
+  padding: 8px 17px;
+  display: flex;
+  align-items: center;
+  color: #333;
+  font-size: 10px;
+
+  &:hover {
+    background: #f5f5f5;
+    color: #0066cc;
+  }
+`;
+
+
+const ActionIcon = styled.div`
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+  color: white;
+  background-color: #3498db;
+  border-radius: 4px;
+  font-size: 10px;
+`;
+
 // サブメニュー関連のスタイル
 const SubMenuContainer = styled.div`
   position: absolute;
@@ -179,14 +232,44 @@ export function Sidebar() {
           <FontAwesomeIcon icon={faChevronRight} />
         </ChevronButton>
         <MenuList>
-          <MenuItem>
-            <MenuText>買取</MenuText>
-            <MenuText>査定</MenuText>
-          </MenuItem>
-          <MenuItem>
+          <ActionItemWrapper>
+            <MenuItem data-testid="menu-item">
+              <MenuText>買取</MenuText>
+              <MenuText>査定</MenuText>
+            </MenuItem>
+            <ActionItemContainer data-testid="action-item-container">
+            <ActionList>
+            <ActionItem href="#">
+              <ActionIcon>
+                <FontAwesomeIcon icon={faCamera} />
+              </ActionIcon>
+              新規買取査定
+            </ActionItem>
+            <ActionItem href="#">
+              <ActionIcon>
+                <FontAwesomeIcon icon={faPen} />
+              </ActionIcon>
+              買取契約の締結
+            </ActionItem>
+            <ActionItem href="#">
+              <ActionIcon>
+                <FontAwesomeIcon icon={faCircle} />
+              </ActionIcon>
+              仮入庫前一覧
+            </ActionItem>
+            <ActionItem href="#">
+              <ActionIcon>
+                <FontAwesomeIcon icon={faTh} />
+              </ActionIcon>
+              査定ランク編集
+            </ActionItem>
+          </ActionList>
+            </ActionItemContainer>
+          </ActionItemWrapper>
+          <MenuItem data-testid="menu-item">
             <MenuText>入庫</MenuText>
           </MenuItem>
-          <MenuItem>
+          <MenuItem data-testid="menu-item">
             <MenuText>顧客</MenuText>
             <MenuText>情報</MenuText>
           </MenuItem>
