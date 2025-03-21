@@ -95,12 +95,11 @@ const ActionItemContainer = styled.div`
   display: none;
   position: absolute;
   top: 0;
-  left: 60px;
+  left: 55px;
   width: 150px;
   height: 150px;
   background: white;
   border: 2px solid #e5e5e5;
-  border-left: none;
   z-index: 20;
 
   ${ActionItemWrapper}:hover & {
