@@ -3,6 +3,13 @@ import "../src/app/globals.css";
 
 const preview: Preview = {
   parameters: {
+    background: {
+      default: "light",
+      values: [
+        { name: "light", value: "#fff" },
+        { name: "dark", value: "#333" },
+      ],
+    },
     actions: { argTypesRegex: "^on[A-Z].*" },
     controls: {
       matchers: {
