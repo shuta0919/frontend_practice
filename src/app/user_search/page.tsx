@@ -72,7 +72,7 @@ interface TableRowProps {
 }
 
 const TableRow = styled.tr<TableRowProps>`
-  background: ${props => props.$isSelected ? '#e0e0e0' : 'white'};
+  background: ${(props) => (props.$isSelected ? "#e0e0e0" : "white")};
 
   &:hover {
     cursor: pointer;
@@ -114,36 +114,36 @@ const BackButton = styled.button`
 `;
 
 const MOCK_CUSTOMERS = [
-  { 
-    id: '12345678901234', 
-    name: '山田太郎', 
-    phone: '09042241234', 
-    address: '東京都練馬区高野台1-1-1 201号室' 
+  {
+    id: "12345678901234",
+    name: "山田太郎",
+    phone: "09042241234",
+    address: "東京都練馬区高野台1-1-1 201号室",
   },
-  { 
-    id: '32323343022332', 
-    name: '田中太郎', 
-    phone: '09042241235', 
-    address: '東京都練馬区高野台1-1-1 202号室' 
+  {
+    id: "32323343022332",
+    name: "田中太郎",
+    phone: "09042241235",
+    address: "東京都練馬区高野台1-1-1 202号室",
   },
-  { 
-    id: '98382329238838', 
-    name: '小池春奈', 
-    phone: '09042241236', 
-    address: '東京都練馬区高野台1-1-1 203号室' 
+  {
+    id: "98382329238838",
+    name: "小池春奈",
+    phone: "09042241236",
+    address: "東京都練馬区高野台1-1-1 203号室",
   },
-  { 
-    id: '98382329232345', 
-    name: '田中春奈', 
-    phone: '09042241237', 
-    address: '東京都練馬区高野台1-1-1 204号室' 
+  {
+    id: "98382329232345",
+    name: "田中春奈",
+    phone: "09042241237",
+    address: "東京都練馬区高野台1-1-1 204号室",
   },
-  { 
-    id: '98382329232334', 
-    name: '太田春奈', 
-    phone: '09042241238', 
-    address: '東京都練馬区高野台1-1-1 205号室' 
-  }
+  {
+    id: "98382329232334",
+    name: "太田春奈",
+    phone: "09042241238",
+    address: "東京都練馬区高野台1-1-1 205号室",
+  },
 ];
 
 type Customer = {
@@ -156,24 +156,27 @@ type Customer = {
 export default function UserSearch() {
   const [searchResults, setSearchResults] = useState<Customer[]>([]);
   const [hasSearched, setHasSearched] = useState(false);
-  const [selectedCustomer, setSelectedCustomer] = useState<Customer | null>(null);
+  const [selectedCustomer, setSelectedCustomer] = useState<Customer | null>(
+    null,
+  );
 
   const handleSearch = (searchTerm: string) => {
     setHasSearched(true);
 
-    const results = MOCK_CUSTOMERS.filter((customer) => 
-      customer.id.includes(searchTerm) ||
-      customer.name.includes(searchTerm) ||
-      customer.phone.includes(searchTerm) ||
-      customer.address.includes(searchTerm)
+    const results = MOCK_CUSTOMERS.filter(
+      (customer) =>
+        customer.id.includes(searchTerm) ||
+        customer.name.includes(searchTerm) ||
+        customer.phone.includes(searchTerm) ||
+        customer.address.includes(searchTerm),
     );
-    
+
     setSearchResults(results.length === 0 ? MOCK_CUSTOMERS : results);
   };
 
   const handleCustomerSelect = (customer: Customer) => {
     setSelectedCustomer(customer);
-  }
+  };
 
   return (
     <Container>
@@ -188,31 +191,35 @@ export default function UserSearch() {
 
           {hasSearched && (
             <>
-            <ResultsTable>
-            <thead>
-              <tr>
-                <TableHeader>Croooober ID</TableHeader>
-                <TableHeader>氏名</TableHeader>
-                <TableHeader>電話番号</TableHeader>
-                <TableHeader>住所</TableHeader>
-              </tr>
-            </thead>
-            <tbody>
-              {searchResults.map((customer) => (
-                <TableRow key={customer.id} $isSelected={selectedCustomer?.id === customer.id} onClick={() => handleCustomerSelect(customer)}>
-                  <TableCell>{customer.id}</TableCell>
-                  <TableCell>{customer.name}</TableCell>
-                  <TableCell>{customer.phone}</TableCell>
-                  <TableCell>{customer.address}</TableCell>
-                </TableRow>
-              ))}
-            </tbody>
-          </ResultsTable>
-          <ButtonContainer>
-            <BackButton>戻る</BackButton>
-            <Button>決定</Button>
-          </ButtonContainer>
-          </>
+              <ResultsTable>
+                <thead>
+                  <tr>
+                    <TableHeader>Croooober ID</TableHeader>
+                    <TableHeader>氏名</TableHeader>
+                    <TableHeader>電話番号</TableHeader>
+                    <TableHeader>住所</TableHeader>
+                  </tr>
+                </thead>
+                <tbody>
+                  {searchResults.map((customer) => (
+                    <TableRow
+                      key={customer.id}
+                      $isSelected={selectedCustomer?.id === customer.id}
+                      onClick={() => handleCustomerSelect(customer)}
+                    >
+                      <TableCell>{customer.id}</TableCell>
+                      <TableCell>{customer.name}</TableCell>
+                      <TableCell>{customer.phone}</TableCell>
+                      <TableCell>{customer.address}</TableCell>
+                    </TableRow>
+                  ))}
+                </tbody>
+              </ResultsTable>
+              <ButtonContainer>
+                <BackButton>戻る</BackButton>
+                <Button>決定</Button>
+              </ButtonContainer>
+            </>
           )}
         </ContentArea>
       </MainContent>

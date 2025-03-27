@@ -65,8 +65,8 @@ interface SearchFormProps {
   onSearch?: (keyword: string) => void;
 }
 
-export function SearchForm({ onSearch = () => { } }: SearchFormProps) {
-  const [searchTerm, setSearchTerm] = useState('');
+export function SearchForm({ onSearch = () => {} }: SearchFormProps) {
+  const [searchTerm, setSearchTerm] = useState("");
 
   function handleSearch() {
     onSearch(searchTerm);
@@ -78,7 +78,12 @@ export function SearchForm({ onSearch = () => { } }: SearchFormProps) {
         <SearchIconWrapper>
           <FontAwesomeIcon icon={faSearch} />
         </SearchIconWrapper>
-        <Input type="text" placeholder="キーワード・電話番号で検索" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
+        <Input
+          type="text"
+          placeholder="キーワード・電話番号で検索"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
       </SearchInputContainer>
       <SearchButton onClick={handleSearch}>検索</SearchButton>
     </SearchContainer>
