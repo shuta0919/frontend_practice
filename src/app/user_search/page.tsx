@@ -160,7 +160,6 @@ export default function UserSearch() {
 
   const handleSearch = (searchTerm: string) => {
     setHasSearched(true);
-    console.log("検索ワード:", searchTerm);
 
     const results = MOCK_CUSTOMERS.filter((customer) => 
       customer.id.includes(searchTerm) ||
@@ -168,16 +167,12 @@ export default function UserSearch() {
       customer.phone.includes(searchTerm) ||
       customer.address.includes(searchTerm)
     );
-
-    console.log("検索結果:", results);
-    console.log("検索結果の数:", results.length);
     
     setSearchResults(results.length === 0 ? MOCK_CUSTOMERS : results);
   };
 
   const handleCustomerSelect = (customer: Customer) => {
     setSelectedCustomer(customer);
-    console.log("選択された顧客:", customer);
   }
 
   return (

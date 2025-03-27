@@ -69,7 +69,6 @@ export function SearchForm({ onSearch = () => { } }: SearchFormProps) {
   const [searchTerm, setSearchTerm] = useState('');
 
   function handleSearch() {
-    console.log('検索ワード:', searchTerm);
     onSearch(searchTerm);
   }
 
