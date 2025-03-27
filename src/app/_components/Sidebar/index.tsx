@@ -95,7 +95,7 @@ const ActionItemContainer = styled.div`
   display: none;
   position: absolute;
   top: 0;
-  left: 55px;
+  left: 56px;
   width: 150px;
   height: 150px;
   background: white;

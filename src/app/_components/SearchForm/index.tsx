@@ -1,5 +1,6 @@
 "use client";
 import styled from "styled-components";
+import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
@@ -65,15 +66,26 @@ interface SearchFormProps {
 }
 
 export function SearchForm({ onSearch = () => {} }: SearchFormProps) {
+  const [searchTerm, setSearchTerm] = useState("");
+
+  function handleSearch() {
+    onSearch(searchTerm);
+  }
+
   return (
     <SearchContainer>
       <SearchInputContainer>
         <SearchIconWrapper>
           <FontAwesomeIcon icon={faSearch} />
         </SearchIconWrapper>
-        <Input type="text" placeholder="キーワード・電話番号で検索" />
+        <Input
+          type="text"
+          placeholder="キーワード・電話番号で検索"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
       </SearchInputContainer>
-      <SearchButton onClick={() => onSearch("")}>検索</SearchButton>
+      <SearchButton onClick={handleSearch}>検索</SearchButton>
     </SearchContainer>
   );
 }
