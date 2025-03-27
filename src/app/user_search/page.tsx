@@ -73,8 +73,9 @@ interface TableRowProps {
 
 const TableRow = styled.tr<TableRowProps>`
   background: ${props => props.$isSelected ? '#e0e0e0' : 'white'};
+
   &:hover {
-    background: #f5f5f5;
+    cursor: pointer;
   }
 `;
 
